@@ -4,23 +4,40 @@ const toDoForm= document.querySelector(".js-toDoForm"),
 
 const TODOS_LS = 'toDos';
 
-const toDos = []; 
+let toDos = []; 
+
+function deleteToDo(event){
+    const btn = event.target;
+    const li = btn.parentNode;
+    toDoList.removeChild(li);
+    const cleanToDos = toDos.filter(function(toDo){
+        
+        return toDo.id !== parseInt(li.id);
+
+    });
+   toDos = cleanToDos
+   saveToDos();
+} //버튼눌렀을떄 삭제하는 함수
+
+
+
 
 function saveToDos(){
-    localStorage.setItem(TODOS_LS, JSON.stringify(toDos);
+    localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
 }
 
 //자바스크립트 object를 string으로바꿔줌 jsonstringify
 
 function paintToDo(text){
-    const li = document.createElement("li")
+    const li = document.createElement("li");
     const delBtn = document.createElement("button");
-    delBtn.value = "XXXXXX";
     const span = document.createElement("span");
     const newId = toDos.length + 1;
-    span.innerText = text
-    li.appendChild(span);
+    delBtn.value = "XXXXXX";
+    delBtn.addEventListener("click", deleteToDo);
+    span.innerText = text;
     li.appendChild(delBtn);
+    li.appendChild(span);
     li.id = newId;
     toDoList.appendChild(li);
     const toDOObj = {
@@ -29,7 +46,7 @@ function paintToDo(text){
     };
 
     toDos.pust(toDoObj); //array(todos) 안에 element(todoObj)넣을수있음
-    saveToDos()
+    saveToDos();
 }
 
 function handleSubmit(event){
@@ -39,12 +56,16 @@ function handleSubmit(event){
     toDoInput.value == "";
 }
 
+
+
 function loadToDos(){
     const loadedToDos = localStorage.getItem(TODOS_LS);
     if (loadedToDos !== null){
-        console.log(loadedToDos);
         const parsedToDos = JSON.parse(loadedToDos);
-        console.log(parsedToDos);
+        parsedToDos.forEach(function(toDo){
+            paintToDo(toDo.text);
+
+        }); //foreach = array가담겨있는것들 각각에 한번씩 실행해줌 
 
     }
 }
