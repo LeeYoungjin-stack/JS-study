@@ -33,7 +33,7 @@ function paintToDo(text){
     const delBtn = document.createElement("button");
     const span = document.createElement("span");
     const newId = toDos.length + 1;
-    delBtn.value = "XXXXXX";
+    delBtn.innerText = "❌";
     delBtn.addEventListener("click", deleteToDo);
     span.innerText = text;
     li.appendChild(delBtn);
@@ -53,7 +53,7 @@ function handleSubmit(event){
     event.preventDefault();
     const currentValue = toDoInput.value;
     paintToDo(currentValue);
-    toDoInput.value == "";
+    toDoInput.value = "";
 }
 
 
