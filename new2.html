@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+body{
+   display:block;
+   height: 1000vh;
+   background-color: black;
+}
+section div{
+
+    width:20%;
+    height:150px;
+    background-color:greenyellow;
+    border-bottom-style: solid;
+
+}
+
+#special{
+    background-color:red;
+}
+
+header{
+    display:flex;
+    justify-content: flex-end;
+}
+
+#header{
+    position: fixed;
+}
+
+
+
+
+
+
+</style>
+<body>
+    
+    <header>
+        <div id="header">
+          <span><button id="btn1" >scroll by 100px(y)</button></span>
+          <span><button id="btn2">scroll to 100px(y)</button></span>
+        <span><button id="btn3">scroll into special</button> </span>
+        </div>
+    </header>
+
+    <section>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div id="special"></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</section>
+
+<script>
+
+    const a = document.getElementById("btn1");
+    const b= document.getElementById("btn2");
+    const c= document.getElementById("btn3");
+
+
+    a.addEventListener("click", event => {
+        window.scrollBy(0,100);
+    });
+
+    b.addEventListener("click", event => {
+        window.scrollTo(0,100);
+    });
+
+    c.addEventListener("click", event =>{
+        const client =document.getElementById("special");
+       client.scrollIntoView();
+    });
+
+
+
+// let client =document.getElementById("special");
+
+
+// client.addEventListener("click",event => {
+//     let result = client.getBoundingClientRect();
+//     console.log(result);
+//     console.log(`page:${event.pageX} , ${event.pageY}`);
+//     console.log(`client:  ${event.clientX} , ${event.clientY}`);
+// });
+
+
+</script>
+
+</body>
+</html>
